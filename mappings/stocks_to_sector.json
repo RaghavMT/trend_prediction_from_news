@@ -1,0 +1,17 @@
+{
+  "HDFCBANK": "Banking",
+  "ICICIBANK": "Banking",
+  "SBIN": "Banking",
+  "AXISBANK": "Banking",
+  "KOTAKBANK": "Banking",
+  "BAJFINANCE": "Financial Services",
+  "RELIANCE": "Oil & Gas",
+  "BHARTIARTL": "Telecom",
+  "LT": "Infrastructure",
+  "INFY": "IT Services",
+  "TCS": "IT Services",
+  "M&M": "Automobile",
+  "MARUTI": "Automobile",
+  "ITC": "FMCG",
+  "HINDUNILVR": "FMCG"
+}

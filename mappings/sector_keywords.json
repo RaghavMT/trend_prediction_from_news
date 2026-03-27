@@ -1,0 +1,67 @@
+{
+  "Banking": [
+    "repo rate",
+    "rbi",
+    "interest rate",
+    "npa",
+    "inflation",
+    "credit growth",
+    "loan",
+    "deposit",
+    "crr",
+    "slr"
+  ],
+  "Financial Services": [
+    "consumer loan",
+    "nbfc",
+    "emi",
+    "retail finance",
+    "credit demand"
+  ],
+  "Oil & Gas": [
+    "crude oil",
+    "petroleum",
+    "diesel",
+    "gas price",
+    "refinery",
+    "opec",
+    "brent"
+  ],
+  "Telecom": [
+    "5g",
+    "spectrum",
+    "tariff hike",
+    "subscriber base",
+    "arpu"
+  ],
+  "IT Services": [
+    "us recession",
+    "tech spending",
+    "outsourcing",
+    "deal win",
+    "dollar revenue",
+    "client contract"
+  ],
+  "Automobile": [
+    "vehicle sales",
+    "auto demand",
+    "ev",
+    "electric vehicle",
+    "chip shortage",
+    "fuel price"
+  ],
+  "FMCG": [
+    "consumer demand",
+    "rural demand",
+    "input cost",
+    "raw material",
+    "pricing power"
+  ],
+  "Infrastructure": [
+    "government capex",
+    "construction",
+    "project award",
+    "tender",
+    "order book"
+  ]
+}

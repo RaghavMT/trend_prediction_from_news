@@ -1,0 +1,5 @@
+{
+  "crude oil": ["Oil & Gas", "Automobile", "FMCG"],
+  "interest rate": ["Banking", "Automobile", "Real Estate"],
+  "inflation": ["FMCG", "Banking", "Automobile"]
+}
