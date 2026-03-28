@@ -12,5 +12,6 @@ test_entities = [
 
 results = mapper.map_entities(test_entities)
 
-for r in results:
-    print(r)
+for a in results:
+    print(a)
+    

@@ -1,7 +1,7 @@
 # File: src/ner_pipeline/parent_mapper.py
 
 from typing import List, Dict
-from company_mapper import CompanyMapper
+from src.ner_pipeline.company_mapper import CompanyMapper
 
 
 class ParentCompanyMapper:
@@ -16,10 +16,72 @@ class ParentCompanyMapper:
 
         # Subsidiary → Parent mapping (lowercase, cleaned)
         self.subsidiary_map = {
+            # Reliance
             "jio": "reliance industries",
+            "reliance jio": "reliance industries",
+            "jio platforms": "reliance industries",
             "reliance retail": "reliance industries",
+            "ril" : "reliance industries",
+
+            # TCS
+            "tcs": "tata consultancy services",
+            "tata consultancy": "tata consultancy services",
             "tata technologies": "tata consultancy services",
-            "amazon web services": "amazon"
+
+            # Infosys
+            "infosys": "infosys",
+
+            # HDFC
+            "hdfc bank": "hdfc bank",
+            "hdfc": "hdfc bank",
+            "hdfc life": "hdfc bank",
+            "hdfc asset management": "hdfc bank",
+
+            # ICICI
+            "icici": "icici bank",
+            "icici bank": "icici bank",
+            "icici prudential": "icici bank",
+            "icici lombard": "icici bank",
+
+            # SBI
+            "sbi": "state bank of india",
+            "state bank": "state bank of india",
+
+            # Axis
+            "axis": "axis bank",
+            "axis bank": "axis bank",
+
+            # Kotak
+            "kotak": "kotak mahindra bank",
+            "kotak bank": "kotak mahindra bank",
+
+            # Airtel
+            "airtel": "bharti airtel",
+            "bharti airtel": "bharti airtel",
+
+            # Larsen & Toubro
+            "l&t": "larsen & toubro",
+            "larsen and toubro": "larsen & toubro",
+
+            # ITC
+            "itc": "itc",
+
+            # HUL
+            "hul": "hindustan unilever",
+            "hindustan unilever": "hindustan unilever",
+
+            # Maruti
+            "maruti": "maruti suzuki",
+            "maruti suzuki": "maruti suzuki",
+
+            # M&M
+            "mahindra": "mahindra & mahindra",
+            "m&m": "mahindra & mahindra",
+            "mahindra and mahindra": "mahindra & mahindra",
+
+            # Bajaj Finance
+            "bajaj finance": "bajaj finance",
+            "bajaj finserv": "bajaj finance"
         }
 
     def map_entity(self, entity: str) -> Dict:

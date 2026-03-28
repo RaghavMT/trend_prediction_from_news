@@ -7,8 +7,13 @@ class FinBERTModel:
 
         self.model_name = "ProsusAI/finbert"
 
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            self.model_name,
+            trust_remote_code=True
+        )
 
-        self.model = AutoModelForSequenceClassification.from_pretrained(self.model_name)
-
+        self.model = AutoModelForSequenceClassification.from_pretrained(
+            self.model_name,
+            trust_remote_code=True
+        )
 

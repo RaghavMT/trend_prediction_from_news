@@ -12,15 +12,26 @@ class NERPipeline:
         self.nlp = spacy.load("en_core_web_sm")
 
     def extract_entities(self, text: str):
-        """
-        Extract ORG entities from text
-        """
         doc = self.nlp(text)
 
         entities = []
 
+        # Step 1: ORG entities
         for ent in doc.ents:
             if ent.label_ == "ORG":
                 entities.append(ent.text.lower().strip())
+
+        # Step 2: fallback → keyword match (VERY IMPORTANT)
+        keywords = [
+            "reliance", "jio", "tcs", "infosys", "hdfc", "icici",
+            "sbi", "axis", "kotak", "airtel", "itc", "maruti",
+            "mahindra", "bajaj"
+        ]
+
+        text_lower = text.lower()
+
+        for word in keywords:
+            if word in text_lower:
+                entities.append(word)
 
         return list(set(entities))
