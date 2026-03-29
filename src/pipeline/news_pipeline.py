@@ -2,10 +2,12 @@ import os
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
 
+from src.data_ingestion.news_fetcher import NewsFetcher
 from src.ner_pipeline.ner_pipeline import NERPipeline
 from src.ner_pipeline.parent_mapper import ParentCompanyMapper
 from src.finbert_pipeline.sentiment_engine import FinBERTSentimentEngine
 from mappings.event_mapper import detect_event
+
 
 def split_by_contrast(text):
         keywords = ["but", "however", "while", "although", "despite"]
@@ -33,11 +35,13 @@ class NewsPipeline:
     Complete pipeline:
     Headline → Entities → Parent Mapping → Dedup → Sentiment → Final Output
     """
-
     def __init__(self):
         self.ner = NERPipeline()
         self.parent_mapper = ParentCompanyMapper()
         self.sentiment_engine = FinBERTSentimentEngine()
+
+        # NEW
+        self.news_fetcher = NewsFetcher(api_key="feb1ceb153984d179fb60e1108f1d90c")
 
     
     def process_headline(self, headline: str):
@@ -47,11 +51,21 @@ class NewsPipeline:
 
         # Step 1: Extract entities
         entities = self.ner.extract_entities(headline)
-
+        print("HEADLINE:", headline)
+        print("ENTITIES:", entities)
         if not entities:
-            # 🔥 NEW LOGIC
             entities = detect_event(headline)
-        
+
+            if not entities:
+                # NEW: fallback keywords
+                keywords = headline.lower()
+
+                if "oil" in keywords:
+                    entities = ["oil"]
+                elif "tech" in keywords:
+                    entities = ["tech"]
+                elif "bank" in keywords or "fed" in keywords:
+                    entities = ["banking"]    
         # Step 2: Map to parent + ticker
         mapped_results = self.parent_mapper.map_entities(entities)
 
@@ -109,3 +123,26 @@ class NewsPipeline:
             })
 
         return final_output
+    
+    def run_live_pipeline(self):
+        news_articles = self.news_fetcher.fetch_market_news()
+
+        headlines = [article["title"] for article in news_articles]
+        
+        print("Fetched News:", headlines[:3])
+        
+        results = []
+
+        for headline in headlines:
+            output = self.process_headline(headline)
+            results.extend(output)
+
+        return results
+
+
+if __name__ == "__main__":
+    pipeline = NewsPipeline()
+    results = pipeline.run_live_pipeline()
+
+    for r in results:
+        print(r)
