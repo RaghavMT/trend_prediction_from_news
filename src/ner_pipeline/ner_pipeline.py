@@ -1,7 +1,7 @@
 # File: src/ner_pipeline/ner_pipeline.py
 
 import spacy
-
+from spacy.cli import download
 
 class NERPipeline:
     """
@@ -9,7 +9,12 @@ class NERPipeline:
     """
 
     def __init__(self):
-        self.nlp = spacy.load("en_core_web_sm")
+
+        try:
+            self.nlp = spacy.load("en_core_web_sm")
+        except:
+            download("en_core_web_sm")
+            self.nlp = spacy.load("en_core_web_sm")
 
     def extract_entities(self, text: str):
         doc = self.nlp(text)
