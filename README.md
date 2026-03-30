@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # 📊 AI-Powered Stock Sentiment Analyzer
 
@@ -98,3 +99,18 @@ Dashboard / UI
 💼 Author
 
 Raghav Tibra
+=======
+---
+title: Stock News Analyzer
+emoji: 🐠
+colorFrom: green
+colorTo: blue
+sdk: gradio
+sdk_version: 6.10.0
+app_file: app.py
+pinned: false
+short_description: predicts stock trend from news headlines
+---
+
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+>>>>>>> c599cd5beccbc8d2f2a4db3d76bb562c2d816aef
