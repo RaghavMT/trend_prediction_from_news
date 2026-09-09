@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # 📊 AI-Powered Stock Sentiment Analyzer
 
 # ⚠️⚠️⚠️⚠️This is only for the top 15 stocks of nifty 50 which are as follows:
@@ -78,39 +76,48 @@ HDFC Bank (HDFCBANK) → Negative
 
 ## ▶️ How to Run
 
+Command line:
+
 ```bash
 python -m src.main
+```
 
-📁 Project Structure
+Streamlit app:
 
+```bash
+streamlit run app.py
+```
+
+HTML/CSS/JS frontend + API (run both, then open `frontend/index.html` in your browser):
+
+```bash
+python -m src.api.api_app
+```
+
+---
+
+## 📁 Project Structure
+
+```
 src/
 ├── ner_pipeline/
 ├── finbert_pipeline/
 ├── pipeline/
-├── mappings/
+├── api/
 ├── main.py
+frontend/
+mappings/
+```
 
-🎯 Future Improvements
-Event-based stock impact detection
-Better context extraction
-Real-time news API integration
-Dashboard / UI
+---
 
-💼 Author
+## 🎯 Future Improvements
+- Event-based stock impact detection
+- Better context extraction
+- Real-time news API integration
+
+---
+
+## 💼 Author
 
 Raghav Tibra
-=======
----
-title: Stock News Analyzer
-emoji: 🐠
-colorFrom: green
-colorTo: blue
-sdk: gradio
-sdk_version: 6.10.0
-app_file: app.py
-pinned: false
-short_description: predicts stock trend from news headlines
----
-
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
->>>>>>> c599cd5beccbc8d2f2a4db3d76bb562c2d816aef
