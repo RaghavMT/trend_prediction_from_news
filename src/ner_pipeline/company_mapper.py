@@ -90,24 +90,6 @@ class CompanyMapper:
 
         return " ".join(cleaned_words)
 
-    #this becomes useless now, because we are not currently using rapidfuzz      
-    """def fuzzy_match_company(self, cleaned_entity):
-        best_match = None
-        highest_score = 0
-
-        for company_name in self.company_to_ticker.keys():
-            score = fuzz.ratio(cleaned_entity, company_name)
-
-            if score > highest_score:
-                highest_score = score
-                best_match = company_name
-
-        # threshold (important)
-        if highest_score > 80:
-            return best_match
-
-        return None"""
-        
     def map_company_to_ticker(self, company_name: str):
         """
         Maps a single company name → ticker

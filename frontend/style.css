@@ -110,13 +110,23 @@ button:disabled {
 }
 
 .result-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px 12px;
   border-radius: 8px;
   background: #0f1115;
   border: 1px solid #262a33;
+}
+
+.headline-text {
+  margin: 0 0 8px;
+  color: #c2c2c2;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .result-item .company {
