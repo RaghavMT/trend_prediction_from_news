@@ -1,18 +1,29 @@
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), ".")))
+# force UTF-8 stdout/stderr so the pipeline's emoji print statements don't crash
+# with UnicodeEncodeError on Windows, where the console defaults to cp1252
+sys.stdout.reconfigure(encoding="utf-8")
+sys.stderr.reconfigure(encoding="utf-8")
+
+# api_app.py lives in src/api, so go up two levels to reach the project root
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-import streamlit as st
-from src.data_ingestion.news_fetcher import NewsFetcher
-from src.finbert_pipeline.sentiment_engine import SentimentEngine
-from src.ner_pipeline.company_mapper import CompanyMapper
 from src.pipeline.news_pipeline import NewsPipeline
 
 app = FastAPI()
+
+# allow the local static frontend (served from a different origin/port) to call this API
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 pipeline = NewsPipeline()
 
@@ -36,3 +47,9 @@ def get_live_news():
 def analyze_news(input: NewsInput):
     result = pipeline.process_headline(input.text)
     return {"results": result}
+
+
+if __name__ == "__main__":
+    # lets you start the API with `python -m src.api.api_app` instead of typing the uvicorn command
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=8000)

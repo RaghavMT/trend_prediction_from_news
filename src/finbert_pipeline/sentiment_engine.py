@@ -5,8 +5,7 @@ from src.finbert_pipeline.finbert_model import FinBERTModel
 class FinBERTSentimentEngine:
 
     def __init__(self):
-
-        print("🚀 Initializing FinBERT...")
+        print("Loading FinBERT model...")
 
         finbert = FinBERTModel()
 
@@ -16,32 +15,21 @@ class FinBERTSentimentEngine:
             tokenizer=finbert.tokenizer
         )
 
-        print("✅ FinBERT Loaded Successfully")
-
+        print("FinBERT model loaded")
 
     def analyze_sentiment(self, text):
-
-        # 🔥 HARD DEBUG (VERY IMPORTANT)
         if not text or len(text.strip()) == 0:
-            print("❌ Empty text received in FinBERT")
             return None
-
-        print(f"🔥 FinBERT INPUT: {text}")
 
         try:
             result = self.sentiment_pipeline(text)
 
-            print("🔥 RAW OUTPUT:", result)
-
-            sentiment = result[0]["label"]
-            confidence = result[0]["score"]
-
             return {
                 "text": text,
-                "sentiment": sentiment,
-                "confidence": confidence
+                "sentiment": result[0]["label"],
+                "confidence": result[0]["score"]
             }
 
         except Exception as e:
-            print("❌ FinBERT ERROR:", str(e))
+            print("FinBERT error:", str(e))
             return None

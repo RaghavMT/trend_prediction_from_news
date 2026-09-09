@@ -75,14 +75,6 @@ class CompanyMapper:
                 if ticker:
                     tickers.append(ticker)
                 continue
-            
-            #I might build this later
-            """# 3. Fuzzy match 🔥
-            from rapidfuzz import fuzz
-
-            match = self.fuzzy_match_company(cleaned_entity)
-            if match:
-                tickers.append(self.company_to_ticker[match])"""
 
         return list(set(tickers))
     

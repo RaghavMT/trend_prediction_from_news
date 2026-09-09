@@ -4,3 +4,5 @@ torch
 spacy
 pandas
 requests
+fastapi
+uvicorn
